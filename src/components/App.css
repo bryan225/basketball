@@ -1,12 +1,15 @@
 .mainContainer {
   height: 200vh;
   background-image: url('/basketball/woodenfloor.jpg');
+  background-repeat: repeat;
+  padding: 20px;
+  width: 900px;
 }
 
 .header {
   position: sticky;
   width: 100%;
-  height: 100px;
+  height: 60px;
   top: 20px;
   text-align: center;
 }
@@ -18,25 +21,25 @@
 }
 
 .away-score {
-  display: inline-block;
   vertical-align: middle;
-  width: 150px;
-  height: 100px;
+  width: 100%;
+  height: 60px;
   background-color: black;
   color: white;
   text-align: center;
-  line-height: 100px;
+  line-height: 60px;
   font-size: xx-large;
+  font-family: Rowdies;
 }
 
 .home-score {
-  display: inline-block;
   vertical-align: middle;
-  width: 150px;
-  height: 100px;
+  width: 100%;
+  height: 60px;
   background-color: black;
   color: white;
   text-align: center;
-  line-height: 100px;
+  line-height: 60px;
   font-size: xx-large;
+  font-family: Rowdies;
 }

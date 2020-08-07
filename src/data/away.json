@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Philip Lo",
+    "number": "1",
+    "pic": "plo.png",
+    "active": true
+  },
+  {
+    "id": 2,
+    "name": "Raymond Chu",
+    "number": "3",
+    "pic": "raymond.png",
+    "active": true
+  },
+  {
+    "id": 3,
+    "name": "Patrick Ng",
+    "number": "6",
+    "pic": "patrick.png",
+    "active": true
+  },
+  {
+    "id": 4,
+    "name": "Angus Wong",
+    "number": "7",
+    "pic": "angus.png",
+    "active": true
+  },
+  {
+    "id": 5,
+    "name": "Tom Lam",
+    "number": "22",
+    "pic": "tom.png",
+    "active": true
+  }
+]

@@ -1,6 +1,6 @@
 .clockContainer {
   width: 200px;
-  height: 100px;
+  height: 60px;
   background-color: black;
   color: white;
   vertical-align: middle;
@@ -17,4 +17,5 @@
   align-items: center;
   height: 0;
   margin-right: 20px;
+  font-family: Orbitron;
 }
