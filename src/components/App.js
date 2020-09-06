@@ -3,6 +3,7 @@ import './App.css';
 import GameClock from './GameClock';
 import ControlPanel from './ControlPanel';
 import TeamPanel from './TeamPanel';
+import BoxScore from './BoxScore';
 import awayData from '../data/away.json';
 import homeData from '../data/home.json';
 
@@ -101,7 +102,7 @@ class App extends React.Component {
             </div>
           </div>
           <div className="row">
-            <div className="left floated five wide column">
+            <div className="left floated four wide column">
               <TeamPanel
                 players={awayData}
                 selectedPlayer={this.state.selectedPlayer}
@@ -109,16 +110,20 @@ class App extends React.Component {
               />
             </div>
 
-            <div className="center aligned six wide column">
+            <div className="center aligned eight wide column">
               {this.state.selectedPlayer ? (
                 <ControlPanel
                   onControlButtonClick={this.onControlButtonClick}
                 />
               ) : (
-                <div />
+                <BoxScore
+                  eventRecord={this.state.eventRecord}
+                  awayPlayers={awayData}
+                  homePlayers={homeData}
+                />
               )}
             </div>
-            <div className="right floated five wide column">
+            <div className="right floated four wide column">
               <TeamPanel
                 players={homeData}
                 selectedPlayer={this.state.selectedPlayer}

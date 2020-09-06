@@ -13,11 +13,11 @@ const PlayerCard = ({ player, selected, onPlayerClick }) => {
         alt={player.name}
         className="right floated ui tiny image"
       />
-      <div>
-        <h4 className="name">
-          #{player.number} {player.name}
-        </h4>
-        <div className="stats">X PTS Y REBS</div>
+      <div className="item">
+        <div className="header">
+          <p>#{player.number}</p>
+          <p>{player.name}</p>
+        </div>
       </div>
     </div>
   );
