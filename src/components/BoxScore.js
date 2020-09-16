@@ -1,8 +1,8 @@
 import React from 'react';
 
 class BoxScore extends React.Component {
-  renderTeamBoxScore = (players) => {
-    const renderedList = players.map((player) => {
+  renderTeamBoxScore = players => {
+    const renderedList = players.map(player => {
       let fgMade = 0;
       let fgMiss = 0;
       let threePtMade = 0;
@@ -16,8 +16,7 @@ class BoxScore extends React.Component {
       let foul = 0;
       let to = 0;
 
-      console.log('Current: ' + player.name);
-      this.props.eventRecord.forEach((record) => {
+      this.props.eventRecord.forEach(record => {
         if (record.Player === player) {
           switch (record.Event) {
             case '2PT MADE':
@@ -66,7 +65,7 @@ class BoxScore extends React.Component {
       let pts = fgMade * 2 + threePtMade + ftMade;
 
       return (
-        <tr key={player.id}>
+        <tr key={player._id}>
           <td>{player.number}</td>
           <td>{player.name}</td>
           <td>{pts}</td>
@@ -90,7 +89,7 @@ class BoxScore extends React.Component {
     return renderedList;
   };
   render() {
-    console.log('refreshing boxscore');
+    //console.log('refreshing boxscore');
     const awayList = this.renderTeamBoxScore(this.props.awayPlayers);
     const homeList = this.renderTeamBoxScore(this.props.homePlayers);
 

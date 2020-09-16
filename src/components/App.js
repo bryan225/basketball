@@ -4,8 +4,7 @@ import GameClock from './GameClock';
 import ControlPanel from './ControlPanel';
 import TeamPanel from './TeamPanel';
 import BoxScore from './BoxScore';
-import awayData from '../data/away.json';
-import homeData from '../data/home.json';
+import bryanode from '../apis/bryanode';
 
 class App extends React.Component {
   state = {
@@ -14,9 +13,24 @@ class App extends React.Component {
     homeScore: 0,
     selectedPlayer: null,
     eventRecord: [],
+    homeTeam: [],
+    awayTeam: [],
   };
 
-  recordEvent = (event) => {
+  getTeams = async () => {
+    const response = await bryanode.get('/teams');
+    //console.log(response);
+    this.setState({
+      homeTeam: response.data.data[0].players,
+      awayTeam: response.data.data[1].players,
+    });
+  };
+
+  componentDidMount() {
+    this.getTeams();
+  }
+  recordEvent = event => {
+    console.log(this.state.selectedPlayer);
     this.state.eventRecord.push({
       Player: this.state.selectedPlayer,
       TimeStamp: this.state.timeLeft,
@@ -26,9 +40,9 @@ class App extends React.Component {
     this.updateScoreBoard();
   };
 
-  getEventRecordByPlayer = (player) => {
+  getEventRecordByPlayer = player => {
     const playerRecord = [];
-    this.state.eventRecord.forEach((record) => {
+    this.state.eventRecord.forEach(record => {
       if (record.Player === player) {
         playerRecord.push(record);
       }
@@ -38,7 +52,7 @@ class App extends React.Component {
   updateScoreBoard = () => {
     let newAwayScore = 0;
     let newHomeScore = 0;
-    this.state.eventRecord.forEach((record) => {
+    this.state.eventRecord.forEach(record => {
       let pointToAdd = 0;
 
       switch (record.Event) {
@@ -66,16 +80,16 @@ class App extends React.Component {
       this.setState({ homeScore: newHomeScore });
     });
   };
-  onControlButtonClick = (buttonText) => {
+  onControlButtonClick = buttonText => {
     this.recordEvent(buttonText);
     this.setState({ selectedPlayer: null });
   };
 
-  playerFromHomeTeam = (player) => {
-    return homeData.includes(player);
+  playerFromHomeTeam = player => {
+    return this.state.homeTeam.includes(player);
   };
 
-  onPlayerClick = (player) => {
+  onPlayerClick = player => {
     if (this.state.selectedPlayer === player) {
       this.setState({ selectedPlayer: null });
     } else {
@@ -93,7 +107,7 @@ class App extends React.Component {
             <div className="center aligned ten wide column">
               <div className="clock-container">
                 <GameClock
-                  onNewTime={(newTime) => this.setState({ timeLeft: newTime })}
+                  onNewTime={newTime => this.setState({ timeLeft: newTime })}
                 />
               </div>
             </div>
@@ -104,7 +118,7 @@ class App extends React.Component {
           <div className="row">
             <div className="left floated four wide column">
               <TeamPanel
-                players={awayData}
+                players={this.state.awayTeam}
                 selectedPlayer={this.state.selectedPlayer}
                 onPlayerClick={this.onPlayerClick}
               />
@@ -118,14 +132,14 @@ class App extends React.Component {
               ) : (
                 <BoxScore
                   eventRecord={this.state.eventRecord}
-                  awayPlayers={awayData}
-                  homePlayers={homeData}
+                  awayPlayers={this.state.awayTeam}
+                  homePlayers={this.state.homeTeam}
                 />
               )}
             </div>
             <div className="right floated four wide column">
               <TeamPanel
-                players={homeData}
+                players={this.state.homeTeam}
                 selectedPlayer={this.state.selectedPlayer}
                 onPlayerClick={this.onPlayerClick}
               />

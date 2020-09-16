@@ -9,7 +9,7 @@ const PlayerCard = ({ player, selected, onPlayerClick }) => {
   return (
     <div className={buttonClass} onClick={() => onPlayerClick(player)}>
       <img
-        src={`/${player.pic}`}
+        src={player.pic}
         alt={player.name}
         className="right floated ui tiny image"
       />
